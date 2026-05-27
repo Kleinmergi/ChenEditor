@@ -1,0 +1,54 @@
+# Chen DSL example
+entity Artist {
+  key name
+  bio
+}
+
+weak entity Song {
+  partialkey title
+  length
+}
+
+relationship Upload identifying {
+  Artist (1,n)
+  Song (1,1)
+}
+
+entity User {
+  key id
+  name
+}
+
+weak entity Playlist {
+  partialkey name
+  createdAt
+}
+
+entity SongPlaylist {
+  key id
+}
+
+entity ArtistPlaylist {
+  key id
+}
+
+relationship Creates identifying {
+  User (0,1000)
+  Playlist (1,1)
+}
+
+isa Playlist disjoint total {
+  SongPlaylist
+  ArtistPlaylist
+}
+
+relationship ContainsSongs {
+  SongPlaylist (0,500)
+  Song (0,n)
+}
+
+relationship ListenFrom {
+  User (0,1)
+  Song (0,n)
+  SongPlaylist (0,n)
+}
