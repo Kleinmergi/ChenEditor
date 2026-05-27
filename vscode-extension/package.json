@@ -1,0 +1,12 @@
+{
+  "name": "chen-editor-vscode",
+  "displayName": "Chen Editor",
+  "version": "0.0.1",
+  "engines": { "vscode": "^1.90.0" },
+  "activationEvents": ["onLanguage:chen"],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languages": [{ "id": "chen", "aliases": ["ChenDSL"], "extensions": [".chen"] }],
+    "commands": [{ "command": "chen.preview", "title": "Chen: Open Preview" }]
+  }
+}
