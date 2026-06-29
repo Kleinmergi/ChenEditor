@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "test": "node --test dist/test/**/*.test.js",
+    "test": "node --test dist/test/parser.test.js",
     "pretest": "npm run build",
     "cli": "node dist/src/cli.js",
-    "render:example": "node dist/src/cli.js examples/music.chen --out examples/music.svg"
+    "render:example": "node dist/src/cli.js examples/music.chen --out examples/music.svg",
+    "serve": "npm run build && python3 -m http.server 4173"
   },
   "dependencies": {
     "commander": "^12.1.0",
