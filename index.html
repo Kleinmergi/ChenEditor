@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ChenEditor – moderner ER/EER Diagramm Editor</title>
+    <meta name="description" content="Responsiver Webeditor für Chen-style ER/EER Diagramme mit Live-Vorschau und SVG Export." />
+    <link rel="stylesheet" href="./src/web.css" />
+    <script type="module" src="./dist/src/web.js"></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="hero">
+        <nav class="topbar" aria-label="Hauptnavigation">
+          <a class="brand" href="#top" aria-label="ChenEditor Startseite">
+            <span class="brand-mark">CE</span>
+            <span><strong>ChenEditor</strong><small>ER/EER Diagramme</small></span>
+          </a>
+          <div class="topbar-actions">
+            <a href="#syntax">Syntax</a>
+            <a href="#editor">Editor</a>
+            <button class="ghost-button" id="themeToggle" type="button" aria-pressed="false">🌙 Dark</button>
+          </div>
+        </nav>
+
+        <section class="hero-grid" id="top">
+          <div class="hero-copy">
+            <p class="eyebrow">Text rein · Diagramm raus · SVG exportieren</p>
+            <h1>Ein frischer, responsiver Chen-Diagramm Editor für Unterricht und Projekte.</h1>
+            <p class="hero-text">Schreibe deine ER/EER-Struktur als einfache DSL, prüfe sie live und exportiere ein sauberes SVG. Optimiert für Beamer, Tablets und kleine Screens.</p>
+            <div class="hero-actions">
+              <a class="primary-button" href="#editor">Editor öffnen</a>
+              <button class="secondary-button" id="loadExample" type="button">Beispiel laden</button>
+            </div>
+          </div>
+          <aside class="feature-card" aria-label="Funktionsübersicht">
+            <span class="status-dot"></span>
+            <h2>Live Preview</h2>
+            <p>Validierung, Parser-Feedback, SVG-Download und Copy-to-Clipboard direkt im Browser.</p>
+            <ul>
+              <li>✓ Moderne Glasoptik</li>
+              <li>✓ Responsive Split-Ansicht</li>
+              <li>✓ Barrierearme Statusmeldungen</li>
+            </ul>
+          </aside>
+        </section>
+      </header>
+
+      <main>
+        <section class="workspace" id="editor" aria-label="Chen DSL Editor">
+          <div class="panel editor-panel">
+            <div class="panel-header">
+              <div><p class="panel-kicker">DSL Eingabe</p><h2>Diagramm beschreiben</h2></div>
+              <div class="button-row">
+                <button id="clearEditor" type="button">Leeren</button>
+                <button id="copyDsl" type="button">DSL kopieren</button>
+              </div>
+            </div>
+            <label class="sr-only" for="dslInput">Chen DSL Eingabe</label>
+            <textarea id="dslInput" spellcheck="false" autocomplete="off"></textarea>
+          </div>
+
+          <div class="panel preview-panel">
+            <div class="panel-header">
+              <div><p class="panel-kicker">Vorschau</p><h2>Gerendertes SVG</h2></div>
+              <div class="button-row">
+                <button id="copySvg" type="button">SVG kopieren</button>
+                <button id="downloadSvg" type="button">SVG downloaden</button>
+              </div>
+            </div>
+            <div class="status" id="status" role="status" aria-live="polite">Bereit.</div>
+            <div class="preview-canvas" id="previewCanvas" aria-label="Diagramm Vorschau"></div>
+          </div>
+        </section>
+
+        <section class="syntax" id="syntax">
+          <div>
+            <p class="panel-kicker">Kurzreferenz</p>
+            <h2>Syntax, die Schüler:innen schnell verstehen</h2>
+          </div>
+          <div class="syntax-grid">
+            <article><h3>Entitäten</h3><code>entity Artist {\n  key name\n}</code></article>
+            <article><h3>Schwache Entitäten</h3><code>weak entity Song {\n  partialkey title\n}</code></article>
+            <article><h3>Beziehungen</h3><code>relationship Upload {\n  Artist (1,n)\n  Song (1,1)\n}</code></article>
+            <article><h3>ISA</h3><code>isa Playlist disjoint total {\n  SongPlaylist\n}</code></article>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
